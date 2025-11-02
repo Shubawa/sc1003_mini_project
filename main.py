@@ -235,10 +235,27 @@ if __name__ == "__main__":
   teams = {}
 
   current_group_number = 1
+
+  team_size = None
+
+  while True:
+    try:
+      team_size_input = input("Enter team size (default to 5): ")
+
+      if not team_size_input: # Default to 5
+        print("Defaulting to team size of 5.")
+        team_size = 5
+        break
+
+      team_size = int(team_size_input)
+
+      break
+    except ValueError:
+      print("Wrong input, please enter team size in integer.")
   
   for tutorial_group in records:
     students = records[tutorial_group]
-    current_teams, current_group_number = split_project_teams(students, current_group_number)
+    current_teams, current_group_number = split_project_teams(students, current_group_number, team_size)
 
     teams = teams | current_teams
 

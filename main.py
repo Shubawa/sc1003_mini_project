@@ -134,6 +134,9 @@ def split_project_teams(students, team_offset=1, team_size=5):
       selected_students = males if gender == 'Male' else females
 
       for _ in range(size):
+        if not selected_students:
+          continue
+
         student = find_best_match_student(selected_students, teams[group_number], cgpa_mapping)
         teams[group_number].append(student)
         selected_students.remove(student)
